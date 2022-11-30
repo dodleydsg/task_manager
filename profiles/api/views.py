@@ -3,18 +3,9 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from ..models import Profile
 from django.contrib.auth.hashers import make_password, check_password
-from django.conf import settings
-from rest_framework_simplejwt.tokens import RefreshToken
 from profiles.models import Profile
 from django.shortcuts import get_object_or_404
-from django.http import Http404
-from .serializers import ProfileSerializer
-
-
-def get_token(Profile):
-    refresh = RefreshToken.for_user(Profile)
-
-    return str(refresh.access_token)
+from ...task_manager.utils import get_token
 
 
 class ProfileCreateView(APIView):
