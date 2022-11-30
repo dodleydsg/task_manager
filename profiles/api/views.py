@@ -5,7 +5,7 @@ from ..models import Profile
 from django.contrib.auth.hashers import make_password, check_password
 from profiles.models import Profile
 from django.shortcuts import get_object_or_404
-from ...task_manager.utils import get_token
+from task_manager.utils import get_token
 
 
 class ProfileCreateView(APIView):
