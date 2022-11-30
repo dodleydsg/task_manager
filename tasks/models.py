@@ -1,10 +1,13 @@
 from django.db import models
 from profiles.models import Profile
+from django.utils import timezone
 
 
 class Category(models.Model):
     title = models.CharField(max_length=250, unique=True)
     description = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
 
 class Task(models.Model):
@@ -17,7 +20,7 @@ class Task(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='tasks')
     title = models.CharField(max_length=250, unique_for_date=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
