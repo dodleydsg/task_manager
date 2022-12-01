@@ -19,7 +19,7 @@ class Task(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='tasks')
-    title = models.CharField(max_length=250, unique_for_date=True)
+    title = models.CharField(max_length=250)
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

@@ -6,7 +6,20 @@ from tasks.models import Category, Task
 from profiles.models import Profile
 from django.shortcuts import get_object_or_404
 from django.http import Http404
-from django.core.exceptions import ObjectDoesNotExist
+from rest_framework import generics
+from tasks.api.serializers import TaskSerializer, CategorySerializer
+
+
+class TaskList(generics.ListCreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
 
 
 class TaskCRUD(APIView):
