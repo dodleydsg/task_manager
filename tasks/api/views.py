@@ -29,13 +29,8 @@ class TaskCRUD(APIView):
         try:
             task = get_object_or_404(Task, pk=pk)
         except Http404:
-            response = {
-                'response':
-                {
-                    'type': 404,
-                    'message': 'Tasks not found'
-                }
-            }
+            response = formulate_response(
+                type=404, message=f'No tasks with id {pk}')
             return Response(response, 404)
 
         response = formulate_response(task)
@@ -64,12 +59,8 @@ class TaskCRUD(APIView):
         try:
             task = get_object_or_404(Task, pk=pk)
         except Http404:
-            response = {
-                "response": {
-                    "type": 404,
-                    "message": "Can't find the requested task"
-                }
-            }
+            response = formulate_response(
+                type=404, message=f'No tasks with id {pk}')
             return Response(response, 404)
 
         Task.objects.filter(pk=pk).delete()
@@ -85,27 +76,20 @@ class CategoryCRUD(APIView):
         try:
             category = get_object_or_404(Category, pk=pk)
         except Http404:
-            response = {
-                'response': {
-                    'type': 404,
-                    'message': 'The requested category wasn\'t found'
-                }
-            }
+            response = formulate_response(obj=category,
+                                          type=404, message=f'No category with id {pk}')
             return Response(response, 404)
 
-        response = formulate_response(category)
+        response = formulate_response(
+            category, type=200, message=f'Successfully found category with id {category.pk}')
 
         return Response(response)
 
     def post(self, request):
         category = Category(**request.data)
         category.save()
-        response = {
-            'id': category.id,
-            'title': category.title,
-            'description': category.description,
-            'created': category.created,
-        }
+        response = formulate_response(
+            type=200, message=f'Successfully added category with id {category.pk}')
         return Response(response)
 
     def patch(self, request, pk):
@@ -116,12 +100,8 @@ class CategoryCRUD(APIView):
             category = get_object_or_404(Category, pk=pk)
 
         except Http404:
-            response = {
-                'response': {
-                    'type': 404,
-                    'message': "The requested category wasn't found"
-                }
-            }
+            response = formulate_response(
+                type=404, message=f'No category with id {pk}')
 
             return Response(response)
 
