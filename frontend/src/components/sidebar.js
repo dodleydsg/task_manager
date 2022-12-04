@@ -10,6 +10,10 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    return <div>This is the Sidebar</div>;
+    return (
+      <div className="h-screen bg-indigo-700 w-60 container">
+        <div className="min-w-12 text-white">asdasd</div>
+      </div>
+    );
   }
 }
