@@ -29,67 +29,76 @@ export default class Sidebar extends Component {
       icon: <MdFormatListBulleted className="text-xl" />,
     },
   ];
+  toggleActive = (idx) => {
+    this.setState({ active: idx });
+  };
 
-  collapseNav() {
-    let sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("collapseNav");
+  toggleOpen = () => {
     this.setState({ open: !this.state.open });
-  }
+    let sidebar = document.getElementById("sidebar");
+  };
 
   render() {
     return (
-      <div
-        className="h-screen flex flex-col justify-items-start w-64 pl-6 py-6"
-        id="sidebar"
-      >
-        <div className="min-w-12 flex space-x-4 align-center mb-10">
-          <img src={Logo} alt="logo" />
-          {this.state.open ? <span className="font-bold">TASKY</span> : <></>}
-        </div>
-        <div>
-          {this.state.open ? (
-            <MdArrowBackIos
-              className="cursor-pointer"
-              onClick={() => this.collapseNav()}
-            />
-          ) : (
-            <MdArrowForwardIos
-              className="cursor-pointer"
-              onClick={() => this.collapseNav()}
-            />
-          )}
-        </div>
-        <div className="my-10">
-          {/* Main Navigation */}
-          <div className="flex flex-col space-y-4" id="sideNav">
-            {this.LINKS.map((val, idx, arr) => {
-              return (
-                <a
-                  className={
-                    this.state.active === idx
-                      ? "flex active items-center space-x-4"
-                      : "flex  items-center space-x-4 hover:text-primary-300"
-                  }
-                  href={val.link}
-                  key={idx}
-                  onClick={() => this.setState({ active: idx })}
-                >
-                  <span className="w-6">{val.icon}</span>
-                  {this.state.open ? <span>{val.name}</span> : <></>}
-                </a>
-              );
-            })}
+      <div className="hidden lg:block">
+        <div
+          className={
+            this.state.open
+              ? "w-64 border overflow-hidden h-screen py-4 border-gray-300 px-4"
+              : "border w-16 overflow-hidden h-screen py-4 border-gray-300 px-4"
+          }
+        >
+          <div className="flex flex-col divide-y-2">
+            <div className="flex space-x-6 mb-12">
+              <img src={Logo} alt="logo" />
+              <span>Tasky</span>
+            </div>
+            <div className="flex flex-col space-y-8">
+              <div className="py-2 flex justify-center">
+                {this.state.open ? (
+                  <button
+                    className="p-2 text-center text-gray-700"
+                    onClick={() => this.toggleOpen()}
+                  >
+                    <MdArrowBackIos />
+                  </button>
+                ) : (
+                  <button
+                    className="p-2 rounded-md  text-gray-700"
+                    onClick={() => this.toggleOpen()}
+                  >
+                    <MdArrowForwardIos />
+                  </button>
+                )}
+              </div>
+              {this.LINKS.map((val, idx, arr) => {
+                return (
+                  <a
+                    key={idx}
+                    href={val.link}
+                    className={
+                      this.state.active === idx
+                        ? "flex space-x-8 items-center active "
+                        : "flex space-x-8 items-center "
+                    }
+                    onClick={() => this.toggleActive(idx)}
+                  >
+                    <i className="hover:text-primary-200 transition-colors duration-200">
+                      {val.icon}
+                    </i>
+                    <span>{val.name}</span>
+                  </a>
+                );
+              })}
+
+              <a href="/" className="flex space-x-8 items-center mt-auto">
+                <i className="hover:text-primary-200 transition-colors duration-200">
+                  <MdAccountCircle className="text-2xl" />
+                </i>
+                <span>Account</span>
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="mt-auto bg-primary-100 hover:bg-primary-300 transition-colors duration-200 flex p-2 items-center h-12">
-          <a href="/" className="flex min-w-full items-center space-x-4">
-            <MdAccountCircle className="text-2xl text-white" />
-            {this.state.open ? (
-              <span className="text-white text-sm">Account Settings</span>
-            ) : (
-              <></>
-            )}
-          </a>
         </div>
       </div>
     );

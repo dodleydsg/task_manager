@@ -9,7 +9,7 @@ body {
 }
 
 @layer components {
-  .active {
-    @apply border-r-primary-200 border-r-4;
+  a.active > i {
+    @apply text-primary-200;
   }
 }
