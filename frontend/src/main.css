@@ -10,6 +10,9 @@ body {
 
 @layer components {
   a.active > i {
-    @apply text-primary-200;
+    @apply text-primary-200 font-bold;
+  }
+  a.active {
+    @apply font-bold;
   }
 }
