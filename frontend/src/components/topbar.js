@@ -1,7 +1,5 @@
 import React from "react";
 
-export class Topbar {
-  render() {
-    return <div>This is the Topbar</div>;
-  }
-}
+export const Topbar = ({ props }) => {
+  return <div>This is the Topbar</div>;
+};
