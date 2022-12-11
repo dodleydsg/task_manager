@@ -29,7 +29,7 @@ const Sidebar = (props) => {
       className={
         props.open
           ? "absolute lg:relative z-10 bg-white transition duration-500"
-          : "-translate-x-full sm:translate-x-0 absolute lg:relative z-10 bg-white transition duration-500"
+          : "-translate-x-full sm:translate-x-0 absolute sm:relative z-10 bg-white transition duration-500"
       }
     >
       <div

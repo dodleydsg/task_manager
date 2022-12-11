@@ -1,14 +1,29 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-export default class Table extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: [],
-    };
-  }
+const Table = (props) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.tasks.map((i) => {
+          return (
+            <tr key={1}>
+              <td>{i.task}</td>
+              <td>{i.category}</td>
+              <td>{i.date}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+};
 
-  render() {
-    return <div>This is the table</div>;
-  }
-}
+export default Table;
