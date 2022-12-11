@@ -28,8 +28,8 @@ const Sidebar = (props) => {
     <div
       className={
         props.open
-          ? "absolute lg:relative z-10 bg-white"
-          : "hidden sm:block absolute lg:relative z-10 bg-white"
+          ? "absolute lg:relative z-10 bg-white transition duration-500"
+          : "-translate-x-full sm:translate-x-0 absolute lg:relative z-10 bg-white transition duration-500"
       }
     >
       <div
@@ -40,14 +40,14 @@ const Sidebar = (props) => {
         }
       >
         <div className="flex flex-col h-full">
-          <div className="py-2 flex mb-8 space-x-8">
+          <div className="py-2 flex items-center mb-8 space-x-8">
             <button
-              className="p-2 rounded-lg text-gray-700 hover:bg-gray-300 bg-gray-200 transition duration-400"
+              className="p-2 rounded-lg text-gray-700 hover:bg-gray-300 bg-gray-200 transition duration-300"
               onClick={() => props.toggleOpen()}
             >
               <MdMenu className="text-2xl text-gray-700" />
             </button>
-            <img src={Logo} alt="logo" className="h-full" />
+            <img src={Logo} alt="logo" className="h-8" />
           </div>
           <div className="flex flex-col space-y-8">
             {LINKS.map((val, idx, arr) => {

@@ -7,7 +7,7 @@ export const Container = ({ children }) => {
   return (
     <>
       <Sidebar open={open} toggleOpen={() => toggleOpen(!open)} />
-      <div>
+      <div className="w-full">
         <Topbar toggleOpen={() => toggleOpen(!open)} />
         {children}
       </div>
