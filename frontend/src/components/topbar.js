@@ -51,8 +51,8 @@ export const Topbar = (props) => {
         <div
           className={
             mobileButton
-              ? "rounded-lg flex flex-col justify-center items-start absolute scale-y-100 transition duration-300 origin-top border left-2 top-full mt-2 space-y-px w-48"
-              : "rounded-lg flex flex-col justify-center items-start scale-y-0 transition duration-300 origin-top  absolute border left-2 top-full mt-2 space-y-px w-48"
+              ? "rounded-lg flex flex-col bg-white justify-center items-start absolute scale-y-100 transition duration-300 origin-top border left-2 top-full mt-2 space-y-px w-48"
+              : "rounded-lg flex flex-col bg-white justify-center items-start scale-y-0 transition duration-300 origin-top  absolute border left-2 top-full mt-2 space-y-px w-48"
           }
         >
           <a

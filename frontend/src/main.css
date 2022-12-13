@@ -15,4 +15,16 @@ body {
   a.active {
     @apply font-bold;
   }
+  tbody {
+    @apply divide-y-2;
+  }
+  table th {
+    @apply px-4 py-4 rounded-t-lg;
+  }
+  table td {
+    @apply px-4 py-4;
+  }
+  tbody > tr {
+    @apply transition duration-300 hover:bg-gray-100;
+  }
 }
